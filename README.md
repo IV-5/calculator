@@ -22,6 +22,9 @@ A comprehensive scientific calculator web application that supports various math
 ## Live Site Preview
 [Live Site Preview](https://IV-5.github.io/calculator/)
 
+## Live Site Screenshot 
+[Screenshot](https://github.com/IV-5/calculator/issues/1#issue-2961553541)
+
 ## Author
 [Izuagbaeke Valentine N.](https://x.com/spin_developer?t=n5B7bJ3x517uiGKwMgywwg&s=09)
 
