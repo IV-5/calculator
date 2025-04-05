@@ -313,6 +313,8 @@ body {
   grid-auto-rows: max-content;
   grid-template-rows: auto 1fr;
   gap: 0px;
+  transition: opacity 0.3s ease-out,
+    transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @media (width >= 780px) {
@@ -334,6 +336,11 @@ body {
   .light-theme .calculator {
     box-shadow: 0 0px 20px 5px rgba(0, 0, 0, 0.18);
   }
+}
+
+body:has(.about-app[open]) .calculator {
+  opacity: 0;
+  transform: scale(0.9);
 }
 
 .app-header {
@@ -565,12 +572,41 @@ body {
   margin-block-end: 14px;
 }
 
+.calc-screen .screen-menu {
+  max-inline-size: 100%;
+  overflow-x: auto hidden;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+  margin-block-end: 8px;
+}
+
+.calc-screen .screen-menu > * {
+  flex-shrink: 0;
+}
+
+.calc-screen .copy-button {
+  --outline-color: var(--gray-color-50);
+  --outline-offset: -2px;
+  padding: 5px;
+}
+
+.calc-screen .copy-button svg {
+  inline-size: 17px;
+  block-size: 17px;
+}
+
+.calc-screen .copy-button.copied {
+  --button-text: #00a500;
+  --outline-color: #00a500;
+}
+
 .calc-screen .radian-flag {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 13px;
   color: var(--gray-color);
-  margin-block-end: 8px;
   pointer-events: none;
 }
 
@@ -582,18 +618,6 @@ body {
   white-space: nowrap;
   overflow: auto hidden;
   padding: 0;
-  cursor: text;
-  -webkit-user-select: text;
-  user-select: text;
-}
-
-.calc-screen :is(.calc-expression, .calc-result)::selection {
-  background-color: var(--calc-non-number-color);
-  color: var(--main-color);
-}
-
-.light-theme .calc-screen :is(.calc-expression, .calc-result)::selection {
-  color: var(--main-bg);
 }
 
 .calc-screen .calc-result {
@@ -744,7 +768,7 @@ body {
   background-color: var(--main-bg);
   border-start-end-radius: 14px;
   border-start-start-radius: 14px;
-  box-shadow: 0 -12px 20px rgb(0 0 0 / 0.18);
+  box-shadow: 0 -8px 20px rgb(0 0 0 / 0.18);
 }
 
 .histoty-top-bar {
@@ -981,6 +1005,7 @@ body {
   inset-block-start: calc(100% + 24px);
   inset-inline-end: 20px;
   inline-size: min(calc(100% - 40px), 240px);
+  max-block-size: calc(100vh - (100% + 12rem));
   background-color: var(--about-nav-bg);
   box-shadow: 0 7px 13px rgb(0 0 0 / 0.18);
   z-index: inherit;
@@ -1023,6 +1048,11 @@ body {
   padding: 20px;
 }
 
+.about-app main a {
+  border-block-end: 2px dotted #4a90e2;
+  border-radius: 0;
+}
+
 .about-app main section {
   background-color: var(--about-scetion-bg);
   padding: 20px;
@@ -1032,6 +1062,11 @@ body {
   inline-size: 100%;
   max-inline-size: 100%;
   overflow: hidden;
+}
+
+.about-app #usage svg {
+  inline-size: 15px;
+  block-size: 15px;
 }
 
 .about-app main section .function-group {
@@ -1220,7 +1255,7 @@ body {
   align-items: center;
   font-size: 14px;
   padding-inline: 3rem;
-  padding-block: 0 2rem;
+  padding-block: 2rem;
   color: var(--gray-color-50);
 }
 
@@ -1230,8 +1265,8 @@ body {
   --outline-offset: -2px;
   box-shadow: 0px 3px 14px rgb(0 0 0 / 0.2);
   border-radius: 50%;
-  block-size: 35px;
-  inline-size: 35px;
+  block-size: 40px;
+  inline-size: 40px;
   position: fixed;
   inset-inline-end: 20px;
   inset-block-end: 20px;
@@ -1249,7 +1284,7 @@ body {
 }
 
 .about-app.scrolled .close-about-app {
-  inset-block-end: 65px;
+  inset-block-end: 70px;
 }
 
 .about-app .close-about-app::before,
